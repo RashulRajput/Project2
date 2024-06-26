@@ -4,8 +4,8 @@ pragma solidity 0.8.18;
 contract MyToken {
 
     // public variables here
-    string public tokenName ="My token";
-    string public tokenAbbrv ="MTA";
+    string public tokenName = "MyToken";
+    string public tokenAbbrv = "MTK";
     uint public totalSupply = 0;
 
     // mapping variable here
@@ -19,10 +19,9 @@ contract MyToken {
 
     // burn function
     function burn(address _address, uint _value) public {
-        if (balances[_address] >= _value)
-        {
-            totalSupply -= _value;
-            balances[_address] -= _value;
-        }
-    }
+        require(balances[_address] >= _value, "Insufficient balance to burn");
+        totalSupply -= _value;
+        balances[_address] -= _value;
+    }
 }
+
